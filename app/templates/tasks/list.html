@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h3>Tasks</h3>
+  <a href="{{ url_for('tasks.create_task') }}" class="btn btn-success">+ New Task</a>
+</div>
+
+<form class="row g-2 mb-3" hx-get="{{ url_for('tasks.list_tasks') }}" hx-target="#task-table" hx-trigger="change, keyup delay:300ms from:input">
+  <div class="col-md-4">
+    <input type="search" class="form-control" name="q" value="{{ q or '' }}" placeholder="Search title/description">
+  </div>
+  <div class="col-md-3">
+    <select class="form-select" name="sort">
+      <option value="created_at" {{ 'selected' if sort=='created_at' else '' }}>Created</option>
+      <option value="due_date" {{ 'selected' if sort=='due_date' else '' }}>Due date</option>
+      <option value="priority" {{ 'selected' if sort=='priority' else '' }}>Priority</option>
+      <option value="title" {{ 'selected' if sort=='title' else '' }}>Title</option>
+    </select>
+  </div>
+  <div class="col-md-2">
+    <select class="form-select" name="dir">
+      <option value="desc" {{ 'selected' if direction=='desc' else '' }}>Desc</option>
+      <option value="asc" {{ 'selected' if direction=='asc' else '' }}>Asc</option>
+    </select>
+  </div>
+</form>
+
+<div id="task-table">
+  {% include "partials/task_table.html" %}
+</div>
+{% endblock %}

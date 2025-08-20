@@ -1,0 +1,15 @@
+body { padding-bottom: 40px; }
+.table td, .table th { vertical-align: middle; }
+
+.chart-container{
+  max-width: 340px;   /* adjust as you like */
+  height: 220px;      /* adjust height */
+  margin: 0 auto;     /* center */
+}
+.chart-container canvas{
+  margin: 0 auto;
+}
+
+table td{
+	height: 62px;
+}

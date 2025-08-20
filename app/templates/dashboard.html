@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+<h3 class="mb-4">Dashboard</h3>
+<div class="row g-3">
+  <div class="col-md-4">
+    <div class="card text-bg-primary shadow-sm">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div><div class="fs-6">Total</div><div class="fs-2 fw-bold">{{ total }}</div></div>
+          <div class="display-6">📊</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-bg-success shadow-sm">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div><div class="fs-6">Completed</div><div class="fs-2 fw-bold">{{ completed }}</div></div>
+          <div class="display-6">✅</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card text-bg-warning shadow-sm">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div><div class="fs-6">Pending</div><div class="fs-2 fw-bold">{{ pending }}</div></div>
+          <div class="display-6">⏳</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-4 shadow-sm">
+  <div class="card-body">
+    <h5 class="card-title">Progress</h5>
+     <div class="chart-container">
+      <canvas id="progressChart"></canvas>
+    </div>
+  </div>
+</div>
+
+<script>
+const ctx = document.getElementById('progressChart');
+const chart = new Chart(ctx, {
+  type: 'doughnut',
+  data: {
+    labels: ['Completed', 'Pending'],
+    datasets: [{
+      data: [{{ completed }}, {{ pending }}]
+    }]
+  }
+});
+</script>
+{% endblock %}

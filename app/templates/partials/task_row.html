@@ -1,0 +1,29 @@
+<tr id="row-{{ t.id }}">
+  <td>{{ t.id }}</td>
+  <td>
+    <div class="{{ 'text-decoration-line-through text-muted' if t.completed else '' }}">{{ t.title }}</div>
+    <div class="small text-muted">{{ t.description[:100] }}</div>
+  </td>
+  <td>{{ t.priority|capitalize }}</td>
+  <td>{{ t.due_date or '-' }}</td>
+  <td>{% if t.completed %}✅ Done{% else %}⏳ Pending{% endif %}</td>
+  <td class="d-flex gap-2">
+    <button class="btn btn-sm btn-outline-primary"
+            hx-post="{{ url_for('tasks.toggle_complete', task_id=t.id) }}"
+            hx-target="#row-{{ t.id }}"
+            hx-swap="outerHTML">
+      Change to {% if t.completed %}⏳ Pending{% else %}✅ Done {% endif %}
+    </button>
+    <a style="
+    line-height: 34px;
+    vertical-align: middle;
+" class="btn btn-sm btn-outline-secondary" href="{{ url_for('tasks.edit_task', task_id=t.id) }}"> Edit </a>
+    <button class="btn btn-sm btn-outline-danger"
+            hx-post="{{ url_for('tasks.delete_task', task_id=t.id) }}"
+            hx-confirm="Delete this task?"
+            hx-target="#row-{{ t.id }}"
+            hx-swap="outerHTML swap:1ms">
+      Delete
+    </button>
+  </td>
+</tr>
