@@ -7,7 +7,6 @@ alembic==1.14.1
 amqp==5.3.1
 anyascii==0.3.2
 appdirs==1.4.4
-apturl==0.5.2
 asgiref==3.8.1
 astunparse==1.6.3
 async-timeout==5.0.1
@@ -210,7 +209,6 @@ pypinyin==0.53.0
 pyRFC3339==1.1
 pyrsistent==0.15.5
 pysbd==0.3.4
-python-apt==2.0.1+ubuntu0.20.4.1
 python-crfsuite==0.9.11
 python-dateutil==2.9.0.post0
 python-debian==0.1.36+ubuntu1.1
